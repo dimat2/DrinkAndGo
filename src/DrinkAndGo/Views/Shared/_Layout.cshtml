@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <title>Drink&Go</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Drink&Go</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    @await Component.InvokeAsync("CategoryMenu")
+                    <li><a asp-controller="Contact" asp-action="Index">Contact us</a></li>
+                    @await Component.InvokeAsync("ShoppingCartSummary")
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container body-content" style="padding: 50px;">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p><a target="_blank" href="https://github.com/dimat2">&copy; 2018 Kiss Péter</a></p>
+            </footer>
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
