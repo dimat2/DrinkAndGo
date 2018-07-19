@@ -54,5 +54,27 @@ namespace DrinkAndGo.Controllers
 
             return View(drinkListViewModel);
         }
+
+        public ViewResult Search(string searchString)
+        {
+            string _searchString = searchString;
+            IEnumerable<Drink> drinks;
+            string currentCategory = string.Empty;
+
+            if (string.IsNullOrEmpty(_searchString))
+            {
+                drinks = _drinkRepository.Drinks.OrderBy(p => p.DrinkId);
+            }
+            else
+            {
+                drinks = _drinkRepository.Drinks.Where(p => p.Name.ToLower().Contains(_searchString.ToLower()));
+            }
+            
+            return View("~/Views/Drink/List.cshtml", new DrinkListViewModel
+            {
+                Drinks = drinks,
+                CurrentCategory = "All drinks"
+            });
+        }
     }
 }
